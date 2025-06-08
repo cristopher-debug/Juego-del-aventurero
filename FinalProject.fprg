@@ -1,0 +1,640 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Entregable 3 - Juego de Aventura"/>
+        <attribute name="authors" value=""/>
+        <attribute name="about" value="Juego de aventura textual con diferentes lugares y acciones"/>
+        <attribute name="saved" value="2025-04-24 12:29:21 a. m."/>
+        <attribute name="created" value=""/>
+        <attribute name="edited" value=""/>
+        <attribute name="edited" value="VXN1YXJpbztERVNLVE9QLVZTRDYxUkE7MjAyNS0wNC0xNzswOTo0Mjo0MiBhLiBtLjs0O1VzdWFyaW87REVTS1RPUC1WU0Q2MVJBOzIwMjUtMDMtMzA7MDY6MTc6NDYgcC4gbS47ZW50cmVnYWJsZTAycHJvamVjdG8uZnByZzs5Mjgx"/>
+        <attribute name="edited" value="VXN1YXJpbztERVNLVE9QLVZTRDYxUkE7MjAyNS0wNC0yNDsxMjoyOToyMSBhLiBtLjs1OzMzNzk="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <call expression="Jugar"/>
+        </body>
+    </function>
+    <function name="accionPelea" type="None" variable="final">
+        <parameters>
+            <parameter name="lugar" type="Integer" array="False"/>
+            <parameter name="direccion" type="Integer" array="False"/>
+            <parameter name="accion" type="Boolean" array="False"/>
+            <parameter name="Enemigo" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="vidaJugador, vidaEnemigo" type="Integer" array="False" size=""/>
+            <declare name="ataque" type="Integer" array="False" size=""/>
+            <assign variable="vidaJugador" expression="3"/>
+            <assign variable="vidaEnemigo" expression="3"/>
+            <do expression="!(vidaJugador = 0 or vidaEnemigo = 0)">
+                <assign variable="ataque" expression="random(2)+1"/>
+                <if expression="ataque = 1">
+                    <then>
+                        <output expression="&quot;El jugador a lanzado un ataque al enemigo.&quot;" newline="True"/>
+                        <assign variable="vidaEnemigo" expression="vidaEnemigo - 1"/>
+                        <output expression="&quot; Al enemigo le quedan: &quot; &amp; vidaEnemigo &amp; &quot; vidas&quot;" newline="True"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;El enemigo a lanzado un ataque al jugador&quot;" newline="True"/>
+                        <assign variable="vidaJugador" expression="vidaJugador - 1"/>
+                        <output expression="&quot; Al jugador le quedan: &quot; &amp; vidaJugador &amp; &quot; vidas&quot;" newline="True"/>
+                    </else>
+                </if>
+            </do>
+            <if expression="vidaJugador = 0">
+                <then>
+                    <if expression="Enemigo = &quot;Esqueleto&quot;">
+                        <then>
+                            <output expression="&quot;El filo oxidado del pirata te alcanz&#243; antes de que pudieras reaccionar. Ca&#237;ste sobre la arena, sintiendo c&#243;mo el mundo se desvanec&#237;a al comp&#225;s de las olas. El tesoro seguir&#237;a escondido entre ruinas, guardado por el esqueleto eterno, esperando al pr&#243;ximo desafortunado.&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;El rugido fue lo &#250;ltimo que escuchaste. El puma cay&#243; sobre ti como una sombra entre ramas. Tus sue&#241;os de gloria se extinguieron en la espesura. El tesoro se mantuvo intacto, guardado por la bestia, eterno y fuera de tu alcance.&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <if expression="Enemigo = &quot;Esqueleto&quot;">
+                        <then>
+                            <output expression="&quot;Con un &#250;ltimo golpe, el esqueleto pirata cay&#243; hecho pedazos, su espada oxidada qued&#243; clavada en la arena. A sus pies, una vieja arca cruji&#243; al abrirse, revelando el resplandor dorado del tesoro perdido. Las olas rompieron como aplausos del destino. La leyenda era cierta&#8230; y ahora el oro tiene nuevo due&#241;o: t&#250;.&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Con agilidad y astucia, venciste al puma, cuya mirada antes fiera se desvaneci&#243; en la niebla. Tras el combate, la monta&#241;a te abri&#243; su secreto: una cueva escondida con artefactos antiguos y cofres repletos de riquezas olvidadas. La jungla reconoci&#243; tu valor. Saliste no solo con oro, sino con el respeto de la selva.&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="EnemigoLugar" type="String" variable="Enemigo">
+        <parameters>
+            <parameter name="lugar" type="Integer" array="False"/>
+            <parameter name="direccion" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="Enemigo" type="String" array="False" size=""/>
+            <assign variable="Enemigo" expression="&quot;&quot;"/>
+            <declare name="accion" type="Boolean" array="False" size=""/>
+            <if expression="lugar = 1 AND direccion = 2">
+                <then>
+                    <assign variable="Enemigo" expression="&quot;Esqueleto&quot;"/>
+                    <output expression="&quot;El viento salado acariciaba el rostro del explorador mientras sus botas hund&#237;an la arena caliente de la costa sur. A lo lejos, restos de un antiguo barco pirata descansaban entre las dunas, sus m&#225;stiles podridos apuntando al cielo como dedos acusadores.&quot; &amp; toChar(10)&amp; &quot;Cuentan que hace siglos, un capit&#225;n escondi&#243; aqu&#237; su tesoro m&#225;s preciado, maldiciendo a quien lo intentara robar. La br&#250;jula vibra. El tesoro est&#225; cerca&#8230; &quot;" newline="True"/>
+                    <output expression="&quot;Ante ti se extiende lo desconocido. El aire es espeso, cada sombra parece moverse. Sabes que lo que buscas podr&#237;a estar al alcance&#8230; o podr&#237;as no volver jam&#225;s. &#191;Te atreves a continuar? (True/False)&quot;" newline="True"/>
+                    <input variable="accion"/>
+                    <if expression="accion = true">
+                        <then>
+                            <call expression="accionPelea(lugar, direccion, accion, Enemigo)"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Volviste la vista atr&#225;s una &#250;ltima vez. La playa estaba tranquila, pero el aire salado llevaba algo m&#225;s: el susurro de una oportunidad perdida. Preferiste la seguridad del regreso a los peligros de lo oculto. El tesoro, para ti, seguir&#225; siendo solo una historia entre mareas.&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <if expression="lugar = 3 AND direccion = 1">
+                        <then>
+                            <assign variable="Enemigo" expression="&quot;Puma&quot;"/>
+                            <output expression="&quot;El explorador empuj&#243; las &#250;ltimas ramas que bloqueaban su paso y se adentr&#243; en la jungla. La humedad era asfixiante, y los sonidos de la selva envolv&#237;an el aire con un zumbido constante. Frente a &#233;l, una monta&#241;a de piedra cubierta de musgo se alzaba como un gigante dormido.&quot;  &amp; toChar(10) &amp;  toChar(10) &amp; &#13;&#10;&#13;&#10;&#13;&#10;&quot;Algo en su interior le dec&#237;a que el tesoro estaba cerca, escondido en la cima de aquella mole verde. Tal vez era la br&#250;jula, tal vez era el instinto&#8230; o quiz&#225;s algo m&#225;s profundo. &quot;" newline="True"/>
+                            <output expression="&quot;si deseas ir un &quot; &amp; Enemigo &amp; &quot; te estara esperando.&quot;" newline="True"/>
+                            <input variable="accion"/>
+                            <if expression="accion = true">
+                                <then>
+                                    <call expression="accionPelea()"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;El rugido fue lo &#250;ltimo que escuchaste. El puma cay&#243; sobre ti como una sombra entre ramas. Tus sue&#241;os de gloria se extinguieron en la espesura. El tesoro se mantuvo intacto, guardado por la bestia, eterno y fuera de tu alcance.&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else/>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="InteractuarConLugar" type="None" variable="">
+        <parameters>
+            <parameter name="lugar" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <call expression="MostrarDescripcionLugar(lugar)"/>
+            <declare name="revisarInventario" type="Boolean" array="False" size=""/>
+            <output expression="&quot;&#191;Desea revisar su inventario? (True/False)&quot;" newline="True"/>
+            <input variable="revisarInventario"/>
+            <if expression="revisarInventario">
+                <then>
+                    <call expression="MostrarInventario(lugar)"/>
+                </then>
+                <else/>
+            </if>
+            <declare name="direccion" type="Integer" array="False" size=""/>
+            <assign variable="direccion" expression="SeleccionarDireccion()"/>
+            <call expression="InteractuarPorDireccion(lugar, direccion)"/>
+        </body>
+    </function>
+    <function name="InteractuarPorDireccion" type="None" variable="">
+        <parameters>
+            <parameter name="lugar" type="Integer" array="False"/>
+            <parameter name="direccion" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="opcion" type="Integer" array="False" size=""/>
+            <declare name="resultadoAccion" type="String" array="False" size=""/>
+            <assign variable="resultadoAccion" expression="&quot;&quot;"/>
+            <if expression="lugar = 1">
+                <then>
+                    <if expression="direccion = 1">
+                        <then>
+                            <output expression="&quot;Hemisferio Norte: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                            <output expression="&quot;1 - Recoger concha brillante&quot;" newline="True"/>
+                            <output expression="&quot;2 - Recoger mapa enterrado&quot;" newline="True"/>
+                            <input variable="opcion"/>
+                            <if expression="opcion = 1">
+                                <then>
+                                    <assign variable="resultadoAccion" expression="&quot;Has recogido una concha brillante. Parece tener grabados misteriosos.&quot;"/>
+                                </then>
+                                <else>
+                                    <assign variable="resultadoAccion" expression="&quot;Has desenterrado un mapa viejo. Muestra una X en alg&#250;n lugar de la isla.&quot;"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <if expression="direccion = 2">
+                                <then>
+                                    <output expression="&quot;Hemisferio Sur: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                    <output expression="&quot;1 - Comer pescado crudo&quot;" newline="True"/>
+                                    <output expression="&quot;2 - Recoger perla&quot;" newline="True"/>
+                                    <input variable="opcion"/>
+                                </then>
+                                <else>
+                                    <if expression="direccion = 3">
+                                        <then>
+                                            <output expression="&quot;Hemisferio Este: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                            <output expression="&quot;1 - Abrir cofre oxidado&quot;" newline="True"/>
+                                            <output expression="&quot;2 - Recoger soga&quot;" newline="True"/>
+                                            <input variable="opcion"/>
+                                        </then>
+                                        <else>
+                                            <output expression="&quot;Hemisferio Oeste: El jugador visualiza dos objetos a lo lejos &quot;" newline="True"/>
+                                            <output expression="&quot;1 - Recoger botella con una nota adentro&quot;" newline="True"/>
+                                            <output expression="&quot;2 - Recoger espada pirata&quot;" newline="True"/>
+                                            <input variable="opcion"/>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <if expression="lugar = 2">
+                        <then>
+                            <if expression="direccion = 1">
+                                <then>
+                                    <output expression="&quot;Hemisferio Norte: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                    <output expression="&quot;1- Recoger diamante&quot;" newline="True"/>
+                                    <output expression="&quot;2 - Recoger mochila&quot;" newline="True"/>
+                                    <input variable="opcion"/>
+                                    <if expression="opcion = 1">
+                                        <then>
+                                            <assign variable="resultadoAccion" expression="&quot;Has recogido un diamante, puedes usarlo para evitar pelear con algun enemigo.&quot;"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="resultadoAccion" expression="&quot;La mochila que recogiste te aporto suministros para que continues tu viaje&quot;"/>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <if expression="direccion = 2">
+                                        <then>
+                                            <output expression="&quot;Hemisferio Sur: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                            <output expression="&quot;1 - Recoger hongo&quot;" newline="True"/>
+                                            <output expression="&quot;2 - Recoger linterna&quot;" newline="True"/>
+                                            <input variable="opcion"/>
+                                        </then>
+                                        <else>
+                                            <if expression="direccion = 3">
+                                                <then>
+                                                    <output expression="&quot;Hemisferio Este: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                    <output expression="&quot;1 - Recoger t&#243;tem&quot;" newline="True"/>
+                                                    <output expression="&quot;2 - Picar mena de oro&quot;" newline="True"/>
+                                                    <input variable="opcion"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Hemisferio Oeste: El jugador visualiza dos objetos a lo lejos &quot;" newline="True"/>
+                                                    <output expression="&quot;1 - Recoger pico&quot;" newline="True"/>
+                                                    <output expression="&quot;2 - Recoger hueso&quot;" newline="True"/>
+                                                    <input variable="opcion"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <if expression="lugar = 3">
+                                <then>
+                                    <if expression="direccion = 1">
+                                        <then>
+                                            <output expression="&quot;Hemisferio Norte: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                            <output expression="&quot;1- Comer fruto exotico&quot;" newline="True"/>
+                                            <output expression="&quot;2 - Recoger miel de una colmena&quot;" newline="True"/>
+                                            <input variable="opcion"/>
+                                            <if expression="opcion = 1">
+                                                <then>
+                                                    <assign variable="resultadoAccion" expression="&quot;Has comido un fruto exotico, este te dara super recistencia.&quot;"/>
+                                                </then>
+                                                <else>
+                                                    <assign variable="resultadoAccion" expression="&quot;La miel que recogiste la puede usar para endulsar a tus enemigos.&quot;"/>
+                                                </else>
+                                            </if>
+                                        </then>
+                                        <else>
+                                            <if expression="direccion = 2">
+                                                <then>
+                                                    <output expression="&quot;Hemisferio Sur: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                    <output expression="&quot;1 - Robar huevo de reptil&quot;" newline="True"/>
+                                                    <output expression="&quot;2 - Recoger daga oxidada&quot;" newline="True"/>
+                                                    <input variable="opcion"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="direccion = 3">
+                                                        <then>
+                                                            <output expression="&quot;Hemisferio Este: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                            <output expression="&quot;1 - Comer gusano&quot;" newline="True"/>
+                                                            <output expression="&quot;2 - Acariciar perico&quot;" newline="True"/>
+                                                            <input variable="opcion"/>
+                                                        </then>
+                                                        <else>
+                                                            <output expression="&quot;Hemisferio Oeste: El jugador visualiza dos objetos a lo lejos &quot;" newline="True"/>
+                                                            <output expression="&quot;1 -Recoger ra&#237;z medicinal&quot;" newline="True"/>
+                                                            <output expression="&quot;2 - Ponerse casco&quot;" newline="True"/>
+                                                            <input variable="opcion"/>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <if expression="lugar = 4">
+                                        <then>
+                                            <if expression="direccion = 1">
+                                                <then>
+                                                    <output expression="&quot;Hemisferio Norte: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                    <output expression="&quot;1 - Leer pergamino antiguo&quot;" newline="True"/>
+                                                    <output expression="&quot;2 - Recoger moneda antigua&quot;" newline="True"/>
+                                                    <input variable="opcion"/>
+                                                    <if expression="opcion = 1">
+                                                        <then>
+                                                            <assign variable="resultadoAccion" expression="&quot;El pergamino esta escrito en un lenguaje antiguo&quot;"/>
+                                                        </then>
+                                                        <else>
+                                                            <assign variable="resultadoAccion" expression="&quot;Es una moneda o es una llave antigua?&quot;"/>
+                                                        </else>
+                                                    </if>
+                                                </then>
+                                                <else>
+                                                    <if expression="direccion = 2">
+                                                        <then>
+                                                            <output expression="&quot;Hemisferio Sur: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                            <output expression="&quot;1 - Llave de cofre&quot;" newline="True"/>
+                                                            <output expression="&quot;2 - Pieza de mecanismo antiguo&quot;" newline="True"/>
+                                                            <input variable="opcion"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="direccion = 3">
+                                                                <then>
+                                                                    <output expression="&quot;Hemisferio Este: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                                    <output expression="&quot;1 - Recoger lampara de aceite&quot;" newline="True"/>
+                                                                    <output expression="&quot;2 - Recoger botas&quot;" newline="True"/>
+                                                                    <input variable="opcion"/>
+                                                                </then>
+                                                                <else>
+                                                                    <output expression="&quot;Hemisferio Oeste: El jugador visualiza dos objetos a lo lejos &quot;" newline="True"/>
+                                                                    <output expression="&quot;1 - Recoger anillo&quot;" newline="True"/>
+                                                                    <output expression="&quot;2 - Recoger flauta de hueso&quot;" newline="True"/>
+                                                                    <input variable="opcion"/>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </then>
+                                        <else>
+                                            <if expression="lugar = 5">
+                                                <then>
+                                                    <if expression="direccion = 1">
+                                                        <then>
+                                                            <output expression="&quot;Hemisferio Norte: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                            <output expression="&quot;1 - Ponerse abrigo&quot;" newline="True"/>
+                                                            <output expression="&quot;2 - Recoger pico&quot;" newline="True"/>
+                                                            <input variable="opcion"/>
+                                                            <if expression="opcion = 1">
+                                                                <then>
+                                                                    <assign variable="resultadoAccion" expression="&quot;El abrigo te protejera de las bajas temperaturas en caso de ser necesario&quot;"/>
+                                                                </then>
+                                                                <else>
+                                                                    <assign variable="resultadoAccion" expression="&quot;Un arma o una herramienta?&quot;"/>
+                                                                </else>
+                                                            </if>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="direccion = 2">
+                                                                <then>
+                                                                    <output expression="&quot;Hemisferio Sur: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                                    <output expression="&quot;1 - Recoger arco&quot;" newline="True"/>
+                                                                    <output expression="&quot;2 - Ponerse guantes t&#233;rmicos&quot;" newline="True"/>
+                                                                    <input variable="opcion"/>
+                                                                    <if expression="opcion = 1">
+                                                                        <then>
+                                                                            <assign variable="resultadoAccion" expression="&quot;El arco parece no ser muy util ya que esta roto&quot;"/>
+                                                                        </then>
+                                                                        <else>
+                                                                            <assign variable="resultadoAccion" expression="&quot;Ya no perderas los dedos por el frio&quot;"/>
+                                                                        </else>
+                                                                    </if>
+                                                                </then>
+                                                                <else>
+                                                                    <if expression="direccion = 3">
+                                                                        <then>
+                                                                            <output expression="&quot;Hemisferio Este: El jugador visualiza dos objetos a lo lejos&quot;" newline="True"/>
+                                                                            <output expression="&quot;1 - Recoger flecha&quot;" newline="True"/>
+                                                                            <output expression="&quot;2 - Recoger botella con agua&quot;" newline="True"/>
+                                                                            <input variable="opcion"/>
+                                                                            <if expression="opcion = 1">
+                                                                                <then>
+                                                                                    <assign variable="resultadoAccion" expression="&quot;Perfecto!! Agua potable&quot;"/>
+                                                                                </then>
+                                                                                <else>
+                                                                                    <assign variable="resultadoAccion" expression="&quot;Haz guardado la flecha&quot;"/>
+                                                                                </else>
+                                                                            </if>
+                                                                        </then>
+                                                                        <else>
+                                                                            <output expression="&quot;Hemisferio Oeste: El jugador visualiza dos objetos a lo lejos &quot;" newline="True"/>
+                                                                            <output expression="&quot;1 - Recoger bast&#243;n de monta&#241;ista&quot;" newline="True"/>
+                                                                            <output expression="&quot;2 - Recoger bolsa con carne seca&quot;" newline="True"/>
+                                                                            <input variable="opcion"/>
+                                                                            <if expression="opcion = 1">
+                                                                                <then>
+                                                                                    <assign variable="resultadoAccion" expression="&quot;El abrigo the protejera de las bajas temperaturas en caso de ser necesario&quot;"/>
+                                                                                </then>
+                                                                                <else>
+                                                                                    <assign variable="resultadoAccion" expression="&quot;Un arma o una herramienta?&quot;"/>
+                                                                                </else>
+                                                                            </if>
+                                                                        </else>
+                                                                    </if>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </then>
+                                                <else>
+                                                    <assign variable="resultadoAccion" expression="&quot;Error: Lugar inv&#225;lido para interactuar por direcci&#243;n.&quot;"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="&quot;=== RESULTADO ===&quot;" newline="True"/>
+            <output expression="resultadoAccion" newline="True"/>
+            <output expression="&quot;=================&quot;" newline="True"/>
+            <call expression="EnemigoLugar(lugar,direccion)"/>
+        </body>
+    </function>
+    <function name="Jugar" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="seguirJugando" type="Boolean" array="False" size=""/>
+            <assign variable="seguirJugando" expression="True"/>
+            <while expression="seguirJugando">
+                <declare name="lugar" type="Integer" array="False" size=""/>
+                <assign variable="lugar" expression="SeleccionarLugar()"/>
+                <call expression="InteractuarConLugar(lugar)"/>
+                <output expression="&quot;&#191;Desea continuar jugando? (True/False)&quot;" newline="True"/>
+                <input variable="seguirJugando"/>
+            </while>
+            <output expression="&quot;&#161;Gracias por jugar! Hasta pronto.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="MostarAcertijoPorLugar" type="Integer" variable="acertijo">
+        <parameters>
+            <parameter name="lugar" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="acertijo" type="Integer" array="False" size=""/>
+            <if expression="lugar = 1">
+                <then>
+                    <output expression="&quot;...&quot;" newline="True"/>
+                    <output expression="&quot; El jugador es sorprendido por un duende que no lo dejara pasar sin resolver el siguiente acertijo.&quot;" newline="True"/>
+                    <output expression="&quot;Acertijo&quot; &amp; toChar(10) &amp; &quot;En la orilla duermo, mi historia es un misterio, el sol me acaricia, pero el tiempo me ha roto entero, que soy?&quot;" newline="True"/>
+                    <do expression="!(acertijo = 2 )">
+                        <output expression="&quot;1 - Un cofre del tesoro enterrado&quot; &amp; toChar(10) &amp;&#13;&#10;&#13;&#10;&quot;2 - Un barco naufragado&quot; &amp; toChar(10) &amp;&#13;&#10;&#13;&#10;&quot;3 - Una botella con un mensaje&quot; &amp; toChar(10) &amp;&#13;&#10;&#13;&#10;&quot;4 - Un coral fosilizado&quot;" newline="True"/>
+                        <input variable="acertijo"/>
+                        <if expression="acertijo = 1">
+                            <then>
+                                <output expression="&quot;Duende: Respuesta incorrecta, te dare una otra pista...&quot;" newline="True"/>
+                                <output expression="&quot;Mi origen es incierto, pero el mar me trajo hasta aqu&#237;.&quot;" newline="True"/>
+                            </then>
+                            <else>
+                                <if expression="acertijo = 3">
+                                    <then>
+                                        <output expression="&quot;Duende: Respuesta incorrecta, te dare otra pista...&quot;" newline="True"/>
+                                        <output expression="&quot;El tiempo y el agua me desgastan, pero a&#250;n cuento historias si sabes escuchar.&quot;" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <if expression="acertijo = 4">
+                                            <then>
+                                                <output expression="&quot;Duende: Respuesta incorrecta, te dare una otra pista...&quot;" newline="True"/>
+                                                <output expression="&quot;Los marineros me temen, pero los aventureros me anhelan.&quot;" newline="True"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+                    </do>
+                    <output expression="&quot;Felicidades has resuelto el acertijo, el duente te ha dejado pasar.&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="lugar = 2">
+                        <then>
+                            <output expression="&quot;...&quot;" newline="True"/>
+                            <output expression="&quot; El jugador es sorprendido por una ara&#241;a magica que no lo dejara pasar sin resolver el siguiente desafio&quot;" newline="True"/>
+                            <output expression="&quot;Desafio&quot; &amp; toChar(10) &amp; &quot;El viento sopla a trav&#233;s de las grietas, creando sonidos extra&#241;os. Al fondo de la caverna, encuentras una vieja puerta de piedra con inscripciones gastadas por el tiempo. Justo al lado, hay tres s&#237;mbolos tallados en la roca y una advertencia: &quot; &amp;&#13;&#10; toChar(10)&amp; toChar(10) &amp; &quot;Solo quien escuche el verdadero susurro podr&#225; abrir la puerta y reclamar el tesoro.&quot;" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                    <do expression="!(acertijo = 2 )">
+                        <output expression="&quot;1- La ola &quot; &amp; toChar(10) &amp;&#13;&#10;&#13;&#10;&quot;2- La rafaga de viento&quot; &amp; toChar(10) &amp;&#13;&#10;&#13;&#10;&quot;3- La llama de fuego&quot;" newline="True"/>
+                        <input variable="acertijo"/>
+                        <if expression="acertijo = 1">
+                            <then>
+                                <output expression="&quot;Ara&#241;a: Respuesta incorrecta, te dare una otra pista...&quot;" newline="True"/>
+                                <output expression="&quot;Elige el s&#237;mbolo que representa lo que escuchas en la cueva. No te dejes enga&#241;ar por otros sonidos, conc&#233;ntrate en el que siempre est&#225; presente.&quot;" newline="True"/>
+                            </then>
+                            <else>
+                                <if expression="acertijo = 3">
+                                    <then>
+                                        <output expression="&quot;Ara&#241;a: Respuesta incorrecta, te dare una otra pista...&quot;" newline="True"/>
+                                        <output expression="&quot;El nombre de la cueva es importante. Piensa en qu&#233; elemento de la naturaleza puede producir un susurro.&quot;" newline="True"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </else>
+                        </if>
+                    </do>
+                    <output expression="&quot;Felicidades has resuelto el acertijo, la ara&#241;a magica te ha dejado pasar.&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="MostrarDescripcionLugar" type="None" variable="">
+        <parameters>
+            <parameter name="lugar" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <if expression="lugar = 1">
+                <then>
+                    <output expression="&quot;Playa Brisa Dorada: Una extensa playa de arena blanca, ba&#241;ada por aguas cristalinas que se pueden ver esparcidos por la orilla, insinuando antiguos secretos ocultos bajo la superficie del mar. reflejan el sol dorado. El sonido de las olas rompiendo suavemente y la brisa salada crean un ambiente relajante. Algunos restos de naufragio.&quot;" newline="True"/>
+                    <call expression="MostarAcertijoPorLugar(lugar)"/>
+                </then>
+                <else>
+                    <if expression="lugar = 2">
+                        <then>
+                            <output expression="&quot;Una oscura caverna en el acantilado occidental de la isla, donde el viento silba a trav&#233;s de estrechas grietas, creando un inquietante susurro. Estalactitas cuelgan del techo y el agua gotea en peque&#241;os charcos iluminados por la tenue luz que se filtra desde la entrada. Se rumorea que la cueva esconde un antiguo tesoro pirata, aunque pocos han osado aventurarse lo suficientemente profundo para comprobarlo&quot;" newline="True"/>
+                            <call expression="MostarAcertijoPorLugar(lugar)"/>
+                        </then>
+                        <else>
+                            <if expression="lugar = 3">
+                                <then>
+                                    <output expression="&quot;Un denso bosque tropical cubre gran parte de la isla, con &#225;rboles colosales y lianas que cuelgan como serpientes dormidas. La fauna es diversa y los sonidos de aves ex&#243;ticas y criaturas desconocidas resuenan en el aire. Caminos apenas visibles serpentean entre la vegetaci&#243;n, llevando a ruinas olvidadas y otros secretos escondidos en la espesura.Un denso bosque tropical cubre gran parte de la isla, con &#225;rboles colosales y lianas que cuelgan como serpientes dormidas. La fauna es diversa y los sonidos de aves ex&#243;ticas y criaturas desconocidas resuenan en el aire. Caminos apenas visibles serpentean entre la vegetaci&#243;n, llevando a ruinas olvidadas y otros secretos escondidos en la espesura.&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="lugar = 4">
+                                        <then>
+                                            <output expression="&quot;Restos de una antigua civilizaci&#243;n que alguna vez floreci&#243; en la isla. Columnas derruidas y muros cubiertos de enredaderas cuentan la historia de un pueblo perdido en el tiempo. Un gran altar de piedra se alza en el centro, marcado con inscripciones en un idioma olvidado. Se dice que durante un eclipse, las sombras de las ruinas revelan un enigma a&#250;n sin resolver.&quot;" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="lugar = 5">
+                                                <then>
+                                                    <output expression="&quot;El punto m&#225;s alto de la isla, ofreciendo una vista panor&#225;mica de todo el territorio. Sus senderos empinados y rocosos desaf&#237;an a cualquier aventurero que busque alcanzar la cima. En la c&#250;spide, un antiguo puesto de observaci&#243;n de madera se mantiene en pie, construido por exploradores que usaban la monta&#241;a para divisar embarcaciones en el horizonte. La leyenda cuenta que en las noches despejadas, se pueden ver luces misteriosas danzando en el cielo.&quot;" newline="True"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Lugar inv&#225;lido.&quot;" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="MostrarInventario" type="None" variable="">
+        <parameters>
+            <parameter name="lugar" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;=== INVENTARIO ===&quot;" newline="True"/>
+            <if expression="lugar = 1 || lugar = 2">
+                <then>
+                    <output expression="&quot;Su inventario actual es:&quot;" newline="True"/>
+                    <output expression="&quot; - Linterna&quot;" newline="True"/>
+                    <output expression="&quot; - Pico&quot;" newline="True"/>
+                    <output expression="&quot; - Mapa Antiguo&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="lugar = 3">
+                        <then>
+                            <output expression="&quot;Su inventario actual es:&quot;" newline="True"/>
+                            <output expression="&quot; - Machete&quot;" newline="True"/>
+                            <output expression="&quot; - Repelente&quot;" newline="True"/>
+                            <output expression="&quot; - Cuerda&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="lugar = 4">
+                                <then>
+                                    <output expression="&quot;Su inventario actual es:&quot;" newline="True"/>
+                                    <output expression="&quot; - Antorcha&quot;" newline="True"/>
+                                    <output expression="&quot; - Guantes de arque&#243;logo&quot;" newline="True"/>
+                                    <output expression="&quot; - Libreta de notas&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="lugar = 5">
+                                        <then>
+                                            <output expression="&quot;Su inventario actual es:&quot;" newline="True"/>
+                                            <output expression="&quot; - Capa protectora&quot;" newline="True"/>
+                                            <output expression="&quot; - Bast&#243;n&quot;" newline="True"/>
+                                            <output expression="&quot; - Binoculares&quot;" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <output expression="&quot;No se puede mostrar el inventario para este lugar.&quot;" newline="True"/>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="&quot;=================&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="SeleccionarDireccion" type="Integer" variable="direccion">
+        <parameters/>
+        <body>
+            <declare name="direccion" type="Integer" array="False" size=""/>
+            <output expression="&quot;&#191;A qu&#233; direcci&#243;n quieres ir usando tu br&#250;jula?:&quot;" newline="True"/>
+            <output expression="&quot;1 - Norte&quot;" newline="True"/>
+            <output expression="&quot;2 - Sur&quot;" newline="True"/>
+            <output expression="&quot;3 - Este&quot;" newline="True"/>
+            <output expression="&quot;4 - Oeste&quot;" newline="True"/>
+            <do expression="direccion &lt; 1 || direccion &gt; 4">
+                <input variable="direccion"/>
+                <if expression="direccion &lt; 1 || direccion &gt; 4">
+                    <then>
+                        <output expression="&quot;Por favor, elige una opci&#243;n v&#225;lida (1-4)&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </do>
+        </body>
+    </function>
+    <function name="SeleccionarLugar" type="Integer" variable="lugar">
+        <parameters/>
+        <body>
+            <declare name="lugar" type="Integer" array="False" size=""/>
+            <output expression="&quot;Elije donde quieres ir:&quot;" newline="True"/>
+            <output expression="&quot;1 - Playa Brisa Dorada&quot;" newline="True"/>
+            <output expression="&quot;2 - Cueva del Susurro&quot;" newline="True"/>
+            <output expression="&quot;3 - Jungla Esmeralda&quot;" newline="True"/>
+            <output expression="&quot;4 - Ruinas del Eclipse&quot;" newline="True"/>
+            <output expression="&quot;5 - Monta&#241;a del Vig&#237;a&quot;" newline="True"/>
+            <do expression="lugar &lt; 1 || lugar &gt; 5">
+                <input variable="lugar"/>
+                <if expression="lugar &lt; 1 || lugar &gt; 5">
+                    <then>
+                        <output expression="&quot;Por favor, elige una opci&#243;n v&#225;lida (1-5)&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </do>
+        </body>
+    </function>
+</flowgorithm>
